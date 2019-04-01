@@ -68,7 +68,7 @@ if algo == 'NB':
   test_predictions, acc, ll = ML_Methods.run_naive_bayes(train, test, ss_split, labels)
 elif algo == 'SVM':
   print("\nRunning Support Vector Machine......\n")
-  # SVM takes quite awhile to get the final results (5 to 10 mins)
+  # SVM takes quite awhile to get the final results (10 to 15 mins)
   test_predictions, acc, ll = ML_Methods.run_support_vector_machine(train, test, ss_split, labels)
 elif algo == 'LR':
   print("\nRunning Logistic Regression......")
