@@ -71,7 +71,7 @@ def species_image(species, labels, train_raw, classes):
 
     return img_target, label_info
 
-def visualize_error(train_predictions, y_test, train_raw, test_index, labels, classes):
+def visualize_error(train_predictions, y_test):
     """
     Review the images where mistakes occur
 

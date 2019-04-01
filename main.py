@@ -12,6 +12,16 @@ import cv2
 import helper as hpr
 import ml_methods as ML_Methods
 
+print("\nPlease select one machine learning algorithm below to perform leaf classification.\n")
+print("NB\t:\tNaive Bayes\n")
+print("SVM\t:\tSupport Vector machine\n")
+print("LR\t:\tLogistic Regression\n")
+print("KNN\t:\tK-nearest Neighbours\n")
+print("LDA\t:\tLinear Discriminant Analysis\n\n")
+print("Example: if you would like to run Naive Bayes, please type NB\n")
+
+algo = input()
+
 # matplotlib inline
 train_raw = pd.read_csv('train.csv')
 test_raw = pd.read_csv('test.csv')
@@ -51,20 +61,31 @@ for i, class_ in enumerate(classes):
     cv2.imwrite('species/'+label_info+'.jpg', species_img)
 
 
-# To run a ml algorithm, just comment out the selected one
-# test_predictions, acc, ll = ML_Methods.run_naive_bayes(train, test, ss_split, labels)
-#
-test_predictions, acc, ll = ML_Methods.run_support_vector_machine(train, test, ss_split, labels)
-#
-# test_predictions, acc, ll = ML_Methods.run_logistic_regression(train, test, ss_split, labels)
-#
-# test_predictions, acc, ll = ML_Methods.run_k_nearest_neighbours(train, test, ss_split, labels)
-#
-# test_predictions, acc, ll = ML_Methods.run_linear_discriminant_analysis(train, test, ss_split, labels)
-
+###################### Run Machine Learning Method ######################
+if algo == 'NB':
+  # Naive Bayes runs very fast
+  print("\nRunning Naive Bayes......\n")
+  test_predictions, acc, ll = ML_Methods.run_naive_bayes(train, test, ss_split, labels)
+elif algo == 'SVM':
+  print("\nRunning Support Vector Machine......\n")
+  # SVM takes quite awhile to get the final results (5 to 10 mins)
+  test_predictions, acc, ll = ML_Methods.run_support_vector_machine(train, test, ss_split, labels)
+elif algo == 'LR':
+  print("\nRunning Logistic Regression......")
+  # Logistic Regression takes around 3-5 mins to get the final results
+  test_predictions, acc, ll = ML_Methods.run_logistic_regression(train, test, ss_split, labels)
+elif algo == 'KNN':
+  print("\nRunning Logistic K-nearest Neighbours......\n")
+  # K-nearest Neighbours runs very fast
+  test_predictions, acc, ll = ML_Methods.run_k_nearest_neighbours(train, test, ss_split, labels)
+elif algo == 'LDA':
+  print("\nRunning Linear Discriminant Analysis......\n")
+  # Linear Discriminant Analysis runs very fast
+  test_predictions, acc, ll = ML_Methods.run_linear_discriminant_analysis(train, test, ss_split, labels)
+else:
+  print("\nPlease provide a ML algorithm to run.\n")
 
 ###################### Postprocessing Data ######################
-
 # Print results
 print ('Accuracy: {:.4%}'.format(acc))
 print ('Log Loss: {:.6}'.format(ll))

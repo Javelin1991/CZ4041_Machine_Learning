@@ -109,6 +109,10 @@ def run_logistic_regression(train, test, ss_split, labels):
     scaler = StandardScaler().fit(test)
     test_scaled = scaler.transform(test)
     test_predictions = grid_search.predict_proba(test_scaled)
+
+    # visualize error
+    # hpr.visualize_error(train_predictions, y_test)
+
     return test_predictions, acc, ll
 
 def run_k_nearest_neighbours(train, test, ss_split, labels):
