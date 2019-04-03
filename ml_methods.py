@@ -15,6 +15,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 import helper as hpr
 
@@ -148,6 +150,42 @@ def run_linear_discriminant_analysis(train, test, ss_split, labels):
     train_predictions = clf.predict(X_test)
     acc = accuracy_score(y_test, train_predictions)
 
+    train_predictions_p = clf.predict_proba(X_test)
+    ll = log_loss(y_test, train_predictions_p)
+
+    test_predictions = clf.predict_proba(test)
+    return test_predictions, acc, ll
+
+
+def run_decision_tree(train, test, ss_split, labels):
+    # prepare training and test data
+    X_train, X_test, y_train, y_test = hpr.prepData(train, test, ss_split, labels);
+
+    clf = DecisionTreeClassifier().fit(X_train, y_train)
+    print ('ML Model: Decision Tree')
+
+    # Accuracy
+    train_predictions = clf.predict(X_test)
+    acc = accuracy_score(y_test, train_predictions)
+    # Logloss
+    train_predictions_p = clf.predict_proba(X_test)
+    ll = log_loss(y_test, train_predictions_p)
+
+    test_predictions = clf.predict_proba(test)
+    return test_predictions, acc, ll
+
+
+def run_random_forest(train, test, ss_split, labels):
+    # prepare training and test data
+    X_train, X_test, y_train, y_test = hpr.prepData(train, test, ss_split, labels);
+
+    clf = RandomForestClassifier().fit(X_train, y_train)
+    print ('ML Model: Random Forest')
+
+    # Accuracy
+    train_predictions = clf.predict(X_test)
+    acc = accuracy_score(y_test, train_predictions)
+    # Logloss
     train_predictions_p = clf.predict_proba(X_test)
     ll = log_loss(y_test, train_predictions_p)
 
