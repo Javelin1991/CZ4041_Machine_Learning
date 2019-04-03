@@ -7,13 +7,8 @@ import cv2
 
 
 def leaf_image(image_id,target_length=160):
-    """
-    `image_id` should be the index of the image in the images/ folder
-
-    Reture the image of a given id(1~1584) with the target size (target_length x target_length)
-
-    """
-
+    # `image_id` should be the index of the image in the images/ folder
+    # Return the image of a given id(1~1584) with the target size (target_length x target_length)
     image_name = str(image_id) + '.jpg'
     leaf_img = plt.imread('images/'+image_name)  # Reading in the image
     leaf_img_width = leaf_img.shape[1]
@@ -38,11 +33,8 @@ def leaf_image(image_id,target_length=160):
 
 
 def species_image(species, labels, train_raw, classes):
-    """
-    `species` should be the index or species name
-
-    Returns an image of a certain labeled species
-    """
+    # `species` should be the index or species name
+    # Return an image of a certain labeled species
 
     leaf_image_length = 160
     #img_target = np.zeros([leaf_image_length, 0], np.uint8)  # Initialization
@@ -72,11 +64,7 @@ def species_image(species, labels, train_raw, classes):
     return img_target, label_info
 
 def visualize_error(train_predictions, y_test):
-    """
-    Review the images where mistakes occur
-
-    """
-
+    # Review the images where mistakes occur
     error_indices = np.where(train_predictions != y_test)[0];
     print ('The error indices: ', error_indices)
     for err_index in error_indices[0:]:
