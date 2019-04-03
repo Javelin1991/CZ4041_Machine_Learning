@@ -14,6 +14,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.neural_network import MLPClassifier
 
 import helper as hpr
 
@@ -151,4 +152,31 @@ def run_linear_discriminant_analysis(train, test, ss_split, labels):
     ll = log_loss(y_test, train_predictions_p)
 
     test_predictions = clf.predict_proba(test)
+    return test_predictions, acc, ll
+
+def run_mlp_neural_network(train, test, ss_split, labels):
+
+    # prepare training and test data
+    X_train, X_test, y_train, y_test = hpr.prepData(train, test, ss_split, labels);
+
+    scaler = StandardScaler().fit(X_train)
+    X_train_scaled = scaler.transform(X_train)
+    scaler = StandardScaler().fit(X_test)
+    X_test_scaled = scaler.transform(X_test)
+
+
+    print ('ML Model: MLP Neural Network')
+    model = MLPClassifier(hidden_layer_sizes=(150,),activation='logistic',solver='lbfgs',alpha=0.001
+                      ,max_iter=200,early_stopping=True,validation_fraction=0.2,
+                      learning_rate='adaptive',tol=1e-8,random_state=1).fit(X_train_scaled,y_train)
+    # Accuracy
+    train_predictions = model.predict(X_test_scaled)
+    acc = accuracy_score(y_test, train_predictions)
+    # Logloss
+    train_predictions_p = model.predict_proba(X_test_scaled)
+    ll = log_loss(y_test, train_predictions_p)
+
+    scaler = StandardScaler().fit(test)
+    test_scaled = scaler.transform(test)
+    test_predictions = model.predict_proba(test_scaled)
     return test_predictions, acc, ll

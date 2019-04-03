@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.model_selection import StratifiedShuffleSplit, cross_val_score, GridSearchCV
 from sklearn.metrics import accuracy_score, log_loss
+from sklearn.neural_network import MLPClassifier
 
 import cv2
 import helper as hpr
@@ -18,6 +19,7 @@ print("SVM\t:\tSupport Vector machine\n")
 print("LR\t:\tLogistic Regression\n")
 print("KNN\t:\tK-nearest Neighbours\n")
 print("LDA\t:\tLinear Discriminant Analysis\n\n")
+print("MLP\t:\tMultilayer Perceptron Neural Network\n\n")
 print("Example: if you would like to run Naive Bayes, please type NB\n")
 
 algo = input()
@@ -82,6 +84,10 @@ elif algo == 'LDA':
   print("\nRunning Linear Discriminant Analysis......\n")
   # Linear Discriminant Analysis runs very fast
   test_predictions, acc, ll = ML_Methods.run_linear_discriminant_analysis(train, test, ss_split, labels)
+elif algo == 'MLP':
+  print("\nRunning Multilayer Perceptron Neural Network......\n")
+  # Linear Discriminant Analysis runs very fast
+  test_predictions, acc, ll = ML_Methods.run_mlp_neural_network(train, test, ss_split, labels)
 else:
   print("\nPlease provide a ML algorithm to run.\n")
 
