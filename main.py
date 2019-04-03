@@ -75,7 +75,7 @@ elif algo == 'LR':
   # Logistic Regression takes around 3-5 mins to get the final results
   test_predictions, acc, ll = ML_Methods.run_logistic_regression(train, test, ss_split, labels)
 elif algo == 'KNN':
-  print("\nRunning Logistic K-nearest Neighbours......\n")
+  print("\nRunning K-nearest Neighbours......\n")
   # K-nearest Neighbours runs very fast
   test_predictions, acc, ll = ML_Methods.run_k_nearest_neighbours(train, test, ss_split, labels)
 elif algo == 'LDA':
