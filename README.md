@@ -1,4 +1,4 @@
-# leaf-classification
+# Leaf Classification
 
 Need to install using pip the following libraries:
 
