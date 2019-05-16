@@ -11,10 +11,12 @@ I have learnt how various machine learning methods or algorithms work as well as
 - Submitted the prediction results to Kaggle
 - Placed among top 15% on the public leaderboard according to the final evaluation scores on Kaggle. 
 
-Follow the instructions below to run the source code.
+Refer to the Project Report for more details. For the project demonstration video : \
+https://www.youtube.com/watch?v=pQM_NAij_qY&feature=youtu.be
 
 **Disclaimer : The python code used to implement the coursework project is no longer maintained. There may be errors or bugs that did not exist at the time of creation.**
 
+Follow the instructions below to run the source code.
 
 ## Leaf Classification
 
